@@ -2,69 +2,217 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>ROHIT GMR YT</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rohit FF Gamer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+
 body{
-background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
-color:#fff;
-min-height:100vh;
+background:#04000c;
+color:white;
+overflow-x:hidden;
+}
+
+/* HERO */
+
+.hero{
+height:100vh;
 display:flex;
+flex-direction:column;
 justify-content:center;
 align-items:center;
-}
-.container{
-width:90%;
-max-width:420px;
-background:#111;
-border-radius:16px;
-padding:25px;
-box-shadow:0 0 25px #00f2ff;
 text-align:center;
+background:radial-gradient(circle,#18002e,#000);
 }
-h1{
-color:#00f2ff;
-margin-bottom:10px;
+
+.hero h1{
+font-size:48px;
+text-shadow:0 0 25px red;
+animation:pulse 2s infinite;
 }
-p{color:#bbb;margin-bottom:20px}
+
+@keyframes pulse{
+0%{text-shadow:0 0 10px red;}
+50%{text-shadow:0 0 30px orange;}
+100%{text-shadow:0 0 10px red;}
+}
+
+.hero p{opacity:.8;margin-top:8px}
+
+/* BUTTONS */
+
 .btn{
-display:block;
-margin:12px 0;
-padding:14px;
-border:2px solid #00f2ff;
-border-radius:12px;
-color:#00f2ff;
-text-decoration:none;
-font-weight:bold;
-transition:0.3s;
+margin:12px;
+padding:14px 38px;
+border:2px solid #ff003c;
+background:transparent;
+color:white;
+border-radius:30px;
+cursor:pointer;
+font-size:16px;
+position:relative;
+overflow:hidden;
+transition:.3s;
 }
-.btn:hover{
-background:#00f2ff;
-color:#000;
-transform:scale(1.05);
+
+.btn:before{
+content:"";
+position:absolute;
+left:-100%;
+top:0;
+width:100%;
+height:100%;
+background:#ff003c;
+transition:.3s;
+z-index:-1;
 }
-.footer{
-margin-top:20px;
-font-size:12px;
-color:#666;
+
+.btn:hover:before{left:0}
+.btn:hover{transform:scale(1.1);box-shadow:0 0 25px red}
+
+/* SECTIONS */
+
+section{
+padding:60px 20px;
+max-width:1200px;
+margin:auto;
+}
+
+.title{
+text-align:center;
+font-size:34px;
+margin-bottom:30px;
+text-shadow:0 0 15px orange;
+}
+
+/* VIDEOS */
+
+.videos{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+}
+
+iframe{
+width:100%;
+height:200px;
+border-radius:15px;
+border:2px solid red;
+}
+
+/* ABOUT */
+
+.about{
+text-align:center;
+line-height:1.7;
+opacity:.9;
+}
+
+/* FOOTER */
+
+footer{
+padding:25px;
+text-align:center;
+border-top:2px solid red;
+background:black;
+}
+
+/* SCROLL ANIMATION */
+
+.reveal{
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+
+.reveal.active{
+opacity:1;
+transform:none;
 }
 </style>
 </head>
+
 <body>
 
-<div class="container">
-<h1>ROHIT GMR YT</h1>
-<p>Free Fire Tournament Platform</p>
+<!-- MUSIC -->
+<audio id="bgm" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1d2b93a8b2.mp3">
+</audio>
 
-<a href="#" class="btn">🎮 Join Tournament</a>
-<a href="#" class="btn">🏆 Leaderboard</a>
-<a href="#" class="btn">📢 Upcoming Matches</a>
+<audio id="click">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_3e5d3f62d7.mp3">
+</audio>
 
-<div class="footer">
-© 2026 Rohit GMR YT
+<div class="hero">
+<h1>🔥 ROHIT FF GAMER 🔥</h1>
+<p>Free Fire Gameplay | Rank Push | Viral Shorts</p>
+
+<button class="btn" onclick="playClick();openChannel()">Visit Channel</button>
+<button class="btn" onclick="playClick();joinDiscord()">Join Discord</button>
+<button class="btn" onclick="toggleMusic()">Music ON / OFF</button>
 </div>
+
+<section class="reveal">
+<h2 class="title">Latest Videos</h2>
+
+<div class="videos">
+<!-- AUTO CHANNEL VIDEOS -->
+<iframe src="https://www.youtube.com/embed?listType=user_uploads&list=Rohitgmrryt" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed?listType=user_uploads&list=Rohitgmrryt" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed?listType=user_uploads&list=Rohitgmrryt" allowfullscreen></iframe>
 </div>
+</section>
+
+<section class="reveal">
+<h2 class="title">About</h2>
+
+<p class="about">
+Welcome to Rohit FF Gamer 🔥  
+Daily Free Fire gameplay, crazy rank push and viral shorts.  
+Subscribe & join FF Army 💪
+</p>
+</section>
+
+<footer>
+© 2026 Rohit FF Gamer
+</footer>
+
+<script>
+
+const channel="https://youtube.com/@rohitgmrryt?si=1txSYvUUWvhzPC9j";
+const discord="https://discord.gg/";
+
+function openChannel(){
+window.open(channel,"_blank");
+}
+
+function joinDiscord(){
+window.open(discord,"_blank");
+}
+
+function playClick(){
+document.getElementById("click").play();
+}
+
+let music=false;
+function toggleMusic(){
+const bg=document.getElementById("bgm");
+music=!music;
+music?bg.play():bg.pause();
+}
+
+/* SCROLL REVEAL */
+
+window.addEventListener("scroll",()=>{
+document.querySelectorAll(".reveal").forEach(el=>{
+if(el.getBoundingClientRect().top < window.innerHeight-100){
+el.classList.add("active");
+}
+});
+});
+
+</script>
 
 </body>
 </html>
